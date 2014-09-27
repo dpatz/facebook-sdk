@@ -239,7 +239,7 @@ class GraphAPI(object):
         try:
             response = requests.request(method or "GET",
                                         "https://graph.facebook.com/" +
-                                        self.version + path,
+                                        self.version + '/' + path,
                                         timeout=self.timeout,
                                         params=args,
                                         data=post_args,
@@ -277,7 +277,7 @@ class GraphAPI(object):
         Example query: "SELECT affiliations FROM user WHERE uid = me()"
 
         """
-        self.request("fql", {"q": query})
+        return self.request("fql", {"q": query})['data']
 
     def get_app_access_token(self, app_id, app_secret):
         """Get the application's access token as a string."""
